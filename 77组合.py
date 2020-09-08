@@ -8,7 +8,5 @@ def backstark(first=1,cur=[]):
             cur.append(i)
             backstark(i+1,cur)
             cur.pop()
-
 res = []
 backstark()
-print(res)
