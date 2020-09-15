@@ -13,12 +13,18 @@ def access_pixels(image):
                 image[row][col][c] = 255-pv
     cv.imshow("123",image)
 
+
+def inverse(image):
+    dst = cv.bitwise_not(image)
+    #图像进行非操作
+    cv.imshow('789',dst)
+
 def create_image():
 #利用np创建图像
     img = np.zeros([400,300,3],np.uint8)
     #np.zeros返回来一个给定形状和类型的用0填充的数组
     img[:,:,0] = np.ones([400,300])*255
-
+    #改变通道0的数值，从而使图片变为蓝色。          bule ，green ，red
     cv.imshow("456",img)
 
 scr = cv.imread("D:/opencvtupian/abc.jpg")
@@ -29,7 +35,8 @@ cv.imshow("input image",scr)
 t1 = cv.getTickCount()
 #用于返回从操作系统启动到当前所经的计时周期数
 #access_pixels(scr)
-create_image()
+#create_image()
+inverse(scr)
 t2 = cv.getTickCount()
 time = ((t2-t1)/cv.getTickFrequency())*1000
 print("time : %s ms"% time)
