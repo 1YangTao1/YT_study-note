@@ -1,26 +1,31 @@
-
 class Solution:
-    board =[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]
-    word = "ABCCED"
     def exist(self, board: List[List[str]], word: str) -> bool:
-        def dfs(x,y,k):
-            if board[x][y]!= word[k]:
-                return False
-            if k == len(word)-1:
-                return True
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
+        def check(i: int, j: int, k: int) -> bool:
+            if board[i][j] != word[k]:
+                return False
+            if k == len(word) - 1:
+                return True
+            
+            visited.add((i, j))
             result = False
-            for x1,y1 in keep:
-                x2 = x+x1
-                y2 = y+y1
-                if 0<=x2<len(board) and 0<=y2<len(board[0]):
-                    if dfs(x2,y2,k+1):
-                        result = True
-                        break
+            for di, dj in directions:
+                newi, newj = i + di, j + dj
+                if 0 <= newi < len(board) and 0 <= newj < len(board[0]):
+                    if (newi, newj) not in visited:
+                        if check(newi, newj, k + 1):
+                            result = True
+                            break
+            
+            visited.remove((i, j))
             return result
-        keep = [[1,0],[0,1],[-1,0],[0,-1]]
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                    if dfs(i,j,0):
-                        return True
+
+        h, w = len(board), len(board[0])
+        visited = set()
+        for i in range(h):
+            for j in range(w):
+                if check(i, j, 0):
+                    return True
+        
         return False
