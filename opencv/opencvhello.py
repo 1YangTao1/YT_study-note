@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+from matplotlib import pyplot as plt
 
 scr = cv.imread("D:/opencvtupian/abc.jpg")
 #读取一张图片
