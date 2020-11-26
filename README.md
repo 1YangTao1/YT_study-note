@@ -1,3 +1,3 @@
 # leedcode
 
-记录leedcode算法
+个人python爬虫，机器学习笔记
